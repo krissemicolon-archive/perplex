@@ -14,5 +14,5 @@ cabal build
 
 ### Dependencies
 - base >=4.13 && <4.14
-- [brick](https://hmckage.haskell.org/package/brick)
+- [brick](https://hackage.haskell.org/package/brick)
 - [gitlib](https://hackage.haskell.org/package/gitlib)
