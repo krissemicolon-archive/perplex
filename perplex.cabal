@@ -22,7 +22,10 @@ executable perplex
 
   build-depends:       base,
                        brick,
-                       gitlib
+                       gitlib,
+                       directory,
+                       cursor,
+                       vty
                        
   hs-source-dirs:      src
   default-language:    Haskell2010
