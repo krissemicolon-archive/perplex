@@ -2,9 +2,9 @@
 > Git Client in a TUI format
 
 ### Building
--> You need\
-    - ghc\
-    - cabal
+You need 
+- ghc 
+- cabal
 
 ```sh
 git clone https://github.com/krissemicolon/perplex.git
