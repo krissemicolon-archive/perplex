@@ -20,7 +20,7 @@ executable perplex
   -- other-extensions:
   ghc-options: -threaded
 
-  build-depends:       base >=4.13 && <4.14,
+  build-depends:       base,
                        brick,
                        gitlib
                        
