@@ -2,48 +2,29 @@
 
 module Main where
 
-import System.Directory
+import Brick
 import Brick.Main
-import Brick.AttrMap
-import Brick.Types
-import Brick.Widgets.Core
-import Graphics.Vty.Input.Events
+import Brick.Widgets.Center (center)
+import Brick.Widgets.Border (borderWithLabel, vBorder, hBorder)
+import Brick.Widgets.Border.Style (unicode)
+
+
+-- s: application state type
+-- e: event type
+-- n: resource name type
+data App s e n =
+    App { appDraw           :: s -> [Widget n]
+        , appChooseCursor   :: s -> [CursorLocation n] -> Maybe (CursorLocation n)
+        , appHandleEvent    :: s -> BrickEvent n e -> EventM n (Next s)
+        , appStartEvent     :: s -> EventM n s
+        , appAttrMap        :: s -> AttrMap
+        }
+
+ui :: Widget ()
+ui = 
+    withBorderStyle unicode $
+    borderWithLabel (str "perplex") $
+    (center (str ".") <+> vBorder <+> center (str "."))
 
 main :: IO ()
-main = do
-    initialState <- buildInitialState
-    endState <- defaultMain tuiApp initialState
-    print endState
-
-data TuiState =
-    TuiState
-    deriving (Show, Eq)
-
-data ResourceName =
-    ResourceName
-    deriving (Show, Eq, Ord)
-
-tuiApp :: App TuiState e ResourceName
-tuiApp =
-    App {
-        appDraw = drawTui,
-        appChooseCursor = showFirstCursor,
-        appHandleEvent = handleTuiEvent,
-        appStartEvent = pure,
-        appAttrMap = const $ attrMap mempty []
-    }
-
-buildInitialState :: IO TuiState
-buildInitialState = pure TuiState
-
-drawTui :: TuiState -> [Widget ResourceName]
-drawTui _ts = []
-
-handleTuiEvent :: TuiState -> BrickEvent n e -> EventM n (Next TuiState)
-handleTuiEvent s e =
-    case e of
-    VtyEvent vtye ->
-        case vtye of
-        EvKey (KChar 'q') [] -> halt s
-        _ -> continue s
-    _ -> continue s
+main = simpleMain ui
