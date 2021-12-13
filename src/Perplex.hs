@@ -20,11 +20,15 @@ data App s e n =
         , appAttrMap        :: s -> AttrMap
         }
 
-ui :: Widget ()
-ui = 
-    withBorderStyle unicode $
-    borderWithLabel (str "perplex") $
-    (center (str ".") <+> vBorder <+> center (str "."))
+frame :: Widget () -> Widget ()
+frame w = withBorderStyle unicode $ borderWithLabel (str "perplex") $ w
+
+homeLayout :: Widget () -> Widget () -> Widget ()
+homeLayout ws wh = ws <+> vBorder <+> wh
+
+status :: Widget ()
+status = str "status"
 
 main :: IO ()
-main = simpleMain ui
+main = do
+    simpleMain $ frame $ homeLayout status status

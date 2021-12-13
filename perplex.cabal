@@ -10,8 +10,8 @@ maintainer:          kris@krishuber.xyz
 build-type:          Simple
 
 executable perplex
-  main-is:             Main.hs
-  ghc-options:        -threaded
+  main-is:             Perplex.hs
+  ghc-options:         -threaded
   build-depends:       base
                      , brick
                      , gitlib
