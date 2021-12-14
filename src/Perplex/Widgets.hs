@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Perplex.Widgets where
 
 import Brick
@@ -12,8 +14,11 @@ frame w = withBorderStyle unicode $ borderWithLabel (str "perplex") $ w
 homeLayout :: Widget () -> Widget () -> Widget ()
 homeLayout ws wh = ws <+> vBorder <+> wh
 
-status :: Widget Greedy ()
+status :: Widget ()
 status = str "status"
 
+lamoe :: Widget ()
+lamoe = fill 'x'
+
 history :: Widget ()
-history = str "history"
+history = center $ str "history" <=> str "lamo"

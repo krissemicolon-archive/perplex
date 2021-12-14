@@ -2,10 +2,12 @@
 
 module Main where
 
+import Perplex.Git
 import Perplex.Widgets
 
 import Brick
 import Brick.Main
+import Git.Types
 
 -- s: application state type
 -- e: event type
@@ -18,19 +20,8 @@ data App s e n =
         , appAttrMap        :: s -> AttrMap
         }
 
--- todo:
--- [ ] layout
--- [ ] gitlib hello world
-
 main :: IO ()
 main = simpleMain initialState
     where
         initialState = frame $ homeLayout status history
-
-{-
-main :: IO ()
-main = do
-  let app = App { ... }
-      initialState = frame $ homeLayout status history
-  finalState <- defaultMain app initialState
--}
+        repo = initRepo defaultRepositoryOptions

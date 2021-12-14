@@ -3,7 +3,7 @@ name:                perplex
 version:             0.1.0.0
 synopsis:            Git Client in a TUI format
 description:         Git Client in a TUI format
-license:             GPLv3
+license:             GPL-3
 license-file:        LICENSE
 author:              krissemicolon
 maintainer:          kris@krishuber.xyz
@@ -18,6 +18,11 @@ executable perplex
                      , directory
                      , cursor
                      , vty
+                     , time
+                     , text
+                     , tagged
+                     , gitlib
+                     , gitlib-libgit2
                        
   hs-source-dirs:      src
   default-language:    Haskell2010
