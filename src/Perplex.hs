@@ -2,12 +2,10 @@
 
 module Main where
 
+import Perplex.Widgets
+
 import Brick
 import Brick.Main
-import Brick.Widgets.Center (center)
-import Brick.Widgets.Border (borderWithLabel, vBorder, hBorder)
-import Brick.Widgets.Border.Style (unicode)
-
 
 -- s: application state type
 -- e: event type
@@ -20,15 +18,19 @@ data App s e n =
         , appAttrMap        :: s -> AttrMap
         }
 
-frame :: Widget () -> Widget ()
-frame w = withBorderStyle unicode $ borderWithLabel (str "perplex") $ w
-
-homeLayout :: Widget () -> Widget () -> Widget ()
-homeLayout ws wh = ws <+> vBorder <+> wh
-
-status :: Widget ()
-status = str "status"
+-- todo:
+-- [ ] layout
+-- [ ] gitlib hello world
 
 main :: IO ()
+main = simpleMain initialState
+    where
+        initialState = frame $ homeLayout status history
+
+{-
+main :: IO ()
 main = do
-    simpleMain $ frame $ homeLayout status status
+  let app = App { ... }
+      initialState = frame $ homeLayout status history
+  finalState <- defaultMain app initialState
+-}
