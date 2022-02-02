@@ -19,7 +19,7 @@ executable perplex
                      , cursor
                      , vty
                      , time
-                     , text
+                     --, text
                      , tagged
                      , gitlib
                      , gitlib-libgit2
